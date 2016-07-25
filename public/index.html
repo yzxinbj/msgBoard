@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="msgBoard">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+    <script src="lib/angular/angular.min.js"></script>
+
+</head>
+<body>
+<div ng-controller="ctrl">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Message Board</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="alert alert-warning text-center" role="alert" id="alert" ng-show="showAlert" ng-bind="alert"></div>
+            <p class="pull-right visible-xs">
+                <button class="btn btn-xs btn-primary">show list</button>
+            </p>
+            <div class="jumbotron">
+                <h1>Message Board</h1>
+                <p>You can say anything in here.</p>
+                <p><a class="btn btn-primary btn-lg" href="javascript:void (0)" onclick="add()" role="button">Say</a></p>
+
+            </div>
+            <div class="row" >
+                <div class="col-6 col-sm-6 col-lg-4" ng-repeat="c in comments">
+                    <h4 ng-bind="c.title"></h4>
+                    <p ng-bind="c.comment"></p>
+                    <a href="#" class="btn btn-default">详细内容</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <ul class="list-group">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="userModal">
+    <div class="modal-dialog">
+        <form class="form-horizontal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Comment</h4>
+                </div>
+                <div class="modal-body">
+                    <!--<input type="hidden" id="userId">-->
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="name">Name:</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="name" name="name" ng-model="comment.name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="email">Email:</label>
+                        <div class="col-xs-9">
+                            <input type="email" class="form-control" id="email" name="email" ng-model="comment.email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="title">Title:</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="title" name="title" ng-model="comment.title">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="comment">Something you want to say:</label>
+                        <div class="col-xs-9">
+                            <textarea rows="9" cols="16" class="form-control" id="comment" name="comment" ng-model="comment.comment"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" ng-click="save()" class="btn btn-primary">Save</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</div>
+</body>
+<script src="lib/jquery/dist/jquery.min.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="dist/main.min.js"></script>
+</html>
